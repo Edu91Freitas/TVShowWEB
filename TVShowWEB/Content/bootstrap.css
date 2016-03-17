@@ -315,7 +315,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #17181b;
 }
 
 input,
@@ -360,7 +360,21 @@ img {
   height: auto;
   max-width: 100%;
 }
+.img-shadowban {  /*obrazek shadow ban*/
+  display: block;
+  height: auto;
+  max-width: 100%;
+ -webkit-box-shadow: 0px 0px 26px 6px rgba(0,0,0,0.77);
+-moz-box-shadow: 0px 0px 26px 6px rgba(0,0,0,0.77);
+box-shadow: 0px 0px 26px 6px rgba(0,0,0,0.77);
 
+}
+.img-shadowban:hover {  /*obrazek shadow ban*/
+ 
+ outline:2px solid #2d75df;
+ opacity: 0.6; 
+   /*dioca obrazki smieszne */
+}
 .img-rounded {
   border-radius: 6px;
 }
@@ -4501,13 +4515,17 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #16171a; 
-  border-color: blue;
+  background-color: #0f0f11;  /* kolor nav baru */
+  
+  -webkit-box-shadow: 0px 11px 11px -4px rgba(0,0,0,0.77);   /* cien navbaru */
+-moz-box-shadow: 0px 11px 11px -4px rgba(0,0,0,0.77);
+box-shadow: 0px 11px 11px -4px rgba(0,0,0,0.77);
 }
 
 .navbar-inverse .navbar-brand {
   color: #999999;
 }
+
 
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
