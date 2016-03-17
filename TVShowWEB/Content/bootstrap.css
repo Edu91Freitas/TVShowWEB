@@ -92,6 +92,7 @@ hr {
   height: 0;
   -moz-box-sizing: content-box;
        box-sizing: content-box;
+
 }
 
 mark {
@@ -314,7 +315,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: #777777;
   background-color: #17181b;
 }
 
@@ -335,14 +336,14 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: whitesmoke;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #2a6496;
-  text-decoration: underline;
+  color: #428bca;
+  
 }
 
 a:focus {
@@ -397,10 +398,12 @@ box-shadow: 0px 0px 26px 6px rgba(0,0,0,0.77);
 }
 
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
+    border: 0;
+    height: 3px;
+    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
 }
 
 .sr-only {
