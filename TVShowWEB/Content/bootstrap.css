@@ -6978,6 +6978,64 @@ td.visible-print {
     background-color: #313338;
 }
 
-tr.highlighted{
-    background: red;
+tr.highlighted td {
+    background: #1b2d4c;
+}
+
+.image-eye {
+   
+    width:20px;
+    height:20px;
+    opacity: 0.3;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.image-eye:hover {
+  
+    width:20px;
+    height:20px;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image-eye-clicked {
+   
+    width:20px;
+    height:20px;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.image-eye-clicked:hover {
+  
+    width:20px;
+    height:20px;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+.info {
+
+    background-color: #313338;
+}
+.iamge-des {
+   
+-webkit-box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
+
+}
+.textTitleDes{
+            
+            font-weight: normal !important;
+            color: whitesmoke !important;
+            letter-spacing: 1pt !important;
+            word-spacing: 2pt !important;
+            font-size: 17px !important;
+            text-align: left !important;
+            font-family: verdana, sans-serif !important;
+            line-height: 1 !important;
 }

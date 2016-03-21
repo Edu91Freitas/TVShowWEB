@@ -3,22 +3,8 @@
 }
 
 
-<br/>
-<script>
-    if (typeof jQuery != 'undefined') {
+<br />
 
-        alert("jQuery library is loaded!");
-
-    } else {
-
-        alert("jQuery library is not found!");
-
-    }
-
- 
-    /*dodac zmaine coloru po klilmn ieciu , dodano plil custom.js i troche pod koniec bootrtap.css*/
-
-</script>
 <div class="row">
     <div class="col-md-2">
         <img class="img-shadow" src="https://placezombie.com/140x200" alt="">
@@ -59,7 +45,7 @@
                         15 Feb. 2016
                     </td>
                     <td>
-                        Row 1
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
                     </td>
                 </tr>
                 <tr>
@@ -77,7 +63,7 @@
                     </td>
 
                     <td>
-                        Row 2
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
                     </td>
 
                 </tr>
@@ -95,12 +81,80 @@
                         15 Feb. 2016
                     </td>
                     <td>
-                        Row 3
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        Amalirllo
+                    </td>
+                    <td>
+                        15 Feb. 2016
+                    </td>
+                    <td>
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        Amalirllo
+                    </td>
+                    <td>
+                        15 Feb. 2016
+                    </td>
+                    <td>
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
                     </td>
                 </tr>
             </table>
         </div>
 
     </div>
+
+    <div class="col-md-4 info">
+        <br />
+        <a class="textTitleDes">Better Call Saul</a>
+        <br/>
+        <br />
+        <img class="iamge-des" src="https://placezombie.com/200x112" alt="eye">
+        <br/>
+        <br/>
+        <p>After Bridgit Pike is kidnapped her brothers, a new spark of courage ignites within her, as she chooses to take control of her future. Meanwhile, Kringle and Nygma's relationship will take a new step and Penguin and Galavan continue to battle for control of Gotham City's underworld.</p>
+
+
+
+    </div>
 </div>
 
+<script>
+    $('#data tr').click(function (e) {
+        $('#data tr').removeClass('highlighted');
+        $(this).addClass('highlighted');
+    });
+
+    $('.TvShowTable').on("click", "a,img", function (e) {
+
+        if ($(this).hasClass("image-eye")) {
+            $(this).removeClass("image-eye").addClass("image-eye-clicked");
+        } else {
+            $(this).removeClass("image-eye-clicked").addClass("image-eye");
+        }
+
+    });
+
+
+
+
+</script>
