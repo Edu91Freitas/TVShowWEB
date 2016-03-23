@@ -31,7 +31,7 @@
                         Watched?
                     </td>
                 </tr>
-                <tr>
+                <tr  id="test1">
                     <td>
                         2
                     </td>
@@ -48,7 +48,7 @@
                         <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
                     </td>
                 </tr>
-                <tr>
+                <tr  id="test2">
                     <td>
                         2
                     </td>
@@ -67,7 +67,24 @@
                     </td>
 
                 </tr>
-                <tr>
+                <tr  id="test3">
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        3
+                    </td>
+                    <td>
+                        Amalirllo
+                    </td>
+                    <td>
+                        15 Feb. 2016
+                    </td>
+                    <td>
+                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+                    </td>
+                </tr>
+                <tr id="test4">
                     <td>
                         2
                     </td>
@@ -84,24 +101,7 @@
                         <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        Amalirllo
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
-                    <td>
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-                </tr>
-                <tr>
+                <tr id="test5">
                     <td>
                         2
                     </td>
@@ -123,26 +123,73 @@
 
     </div>
 
-    <div class="col-md-4 info">
+    <div id="despanel" class="col-md-4 info hidden">
         <br />
-        <a class="textTitleDes">Better Call Saul</a>
+        <a id="title" class="textTitleDes">Better Call Saul</a>
         <br/>
         <br />
-        <img class="iamge-des" src="https://placezombie.com/200x112" alt="eye">
+        <img id="pic" class="iamge-des" src="https://placezombie.com/200x112" alt="eye">
         <br/>
         <br/>
-        <p>After Bridgit Pike is kidnapped her brothers, a new spark of courage ignites within her, as she chooses to take control of her future. Meanwhile, Kringle and Nygma's relationship will take a new step and Penguin and Galavan continue to battle for control of Gotham City's underworld.</p>
+        <p id="des">After Bridgit Pike is kidnapped her brothers, a new spark of courage ignites within her, as she chooses to take control of her future. Meanwhile, Kringle and Nygma's relationship will take a new step and Penguin and Galavan continue to battle for control of Gotham City's underworld.</p>
 
 
 
     </div>
 </div>
-
+<br />
 <script>
+
+
+
+
+
     $('#data tr').click(function (e) {
         $('#data tr').removeClass('highlighted');
         $(this).addClass('highlighted');
+        id = $(this).attr('id');
+
+
+        switch(id) {
+        case "test1":
+            $('#title').text('Switch');
+            $('#des').text('Jimmy and Kims relationship takes a new turn. Mike decides its for the best to sever his affiliation with an unrestrained associate.');
+            $("#despanel").removeClass('hidden');
+            $('#pic').attr("src", 'http://ia.media-imdb.com/images/M/MV5BNDgyODIyODIxOV5BMl5BanBnXkFtZTgwODQxNjM5NzE@@._V1_UX200_CR0,0,200,112_AL_.jpg');
+            break;
+        case "test2":
+            $('#title').text('Cobbler');
+            $('#des').text('Mike brokers a deal in order to keep a potentially messy situation intact; Jimmy tries to exonerate an eccentric client.');
+            $("#despanel").removeClass('hidden');
+            $('#pic').attr("src", "http://ia.media-imdb.com/images/M/MV5BMTk3OTcyMzg4NF5BMl5BanBnXkFtZTgwNjE1MDExODE@@._V1_UX200_CR0,0,200,112_AL_.jpg");
+            break;
+            case "test3":
+                $('#title').text('Ep 3');
+                $('#des').text('33333333333333333333');
+                $("#despanel").removeClass('hidden');
+                $('#pic').attr("src", 'https://placezombie.com/200x112');
+                break;
+            case "test4":
+                $('#title').text('Ep 4');
+                $('#des').text('444444444444444444444');
+                $("#despanel").removeClass('hidden');
+                $('#pic').attr("src", 'https://placezombie.com/200x112');
+                break;
+            case "test5":
+                $('#title').text('Ep 5');
+                $('#des').text('555555555555555555555');
+                $("#despanel").removeClass('hidden');
+                $('#pic').attr("src", 'https://placezombie.com/200x112');
+                break;
+        default:
+
+        }
+
+
     });
+
+
+
 
     $('.TvShowTable').on("click", "a,img", function (e) {
 
@@ -153,8 +200,6 @@
         }
 
     });
-
-
 
 
 </script>
