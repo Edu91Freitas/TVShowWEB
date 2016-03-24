@@ -134,14 +134,28 @@
         <p id="des">After Bridgit Pike is kidnapped her brothers, a new spark of courage ignites within her, as she chooses to take control of her future. Meanwhile, Kringle and Nygma's relationship will take a new step and Penguin and Galavan continue to battle for control of Gotham City's underworld.</p>
 
 
+        <div class="lista">
+            <fieldset class="listdown">
+                <label class="listlabel" for="speed">Video quality</label>
+                <select name="speed" id="speed">
+                    <option>480p</option>
+                    <option>720p</option>
+                    <option selected="selected">1080p</option>
 
-    </div>
+                </select>
+            </fieldset>
+        </div>
+</div>
 </div>
 <br />
 <script>
 
 
 
+    $(function () {
+        $("#speed").selectmenu();
+
+    });
 
 
     $('#data tr').click(function (e) {
@@ -200,6 +214,7 @@
         }
 
     });
+
 
 
 </script>

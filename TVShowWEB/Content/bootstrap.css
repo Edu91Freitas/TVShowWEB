@@ -7044,3 +7044,30 @@ box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
             line-height: 1 !important;
 }
 
+select {
+          width: 100px;
+           font-family: verdana, sans-serif !important;
+	    
+      
+    
+}
+.listdown {
+          display: block;
+          font-family: verdana, sans-serif !important;
+	     
+     
+
+    }
+
+
+.listlabel {
+    color: whitesmoke !important;
+ 
+}
+.lista {
+     font-size: 10px !important;
+    display: table-cell !important;
+    vertical-align: middle !important;
+    height: 50px !important;
+ 
+}

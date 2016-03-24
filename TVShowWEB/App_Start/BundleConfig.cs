@@ -13,6 +13,23 @@ namespace TVShowWEB
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+            //add Jqery UI
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            "~/Scripts/jquery-ui-{version}.js"));
+            // Jquery CSS
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+              "~/Content/themes/base/core.css",
+              "~/Content/themes/base/resizable.css",
+              "~/Content/themes/base/selectable.css",
+              "~/Content/themes/base/accordion.css",
+              "~/Content/themes/base/autocomplete.css",
+              "~/Content/themes/base/button.css",
+              "~/Content/themes/base/dialog.css",
+                "~/Content/themes/base/menu.css",
+                   "~/Content/themes/base/selectmenu.css",
+              "~/Content/themes/base/slider.css",
+              "~/Content/themes/base/theme.css"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
