@@ -10,167 +10,25 @@
     <!-- /.row -->
     <!-- Projects Row -->
     <div class="row">
-        <div class="col-md-2 portfolio-item">
-            
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200" alt="">
-
-                Game of Thrones
-
-            </a>
-
-
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"     alt="">
-                Better Call Saul
-            </a>
-          
-        
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                Cosmos: A Spacetime Odyssey
-            </a>
-           
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                Fargo
-            </a>
-           
-         
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                House of Cards
-            </a>
-        
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                Narcos
-            </a>
-          
-          
-        </div>
-    </div>
-    <!-- /.row -->
-    <!-- Projects Row -->
-    <div class="row">
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                Hannibal
-            </a>
-           
-           
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                Black Mirror
-            </a>
-         
-           
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                Mr. Robot
-            </a>
-          
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                Dr. House 
-            </a>
-           
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                Homeland 
-            </a>
-           
-        
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                Sons of Anarchy
-            </a>
-          
-           
-        </div>
-    </div>
-    <!-- /.row -->
-    <!-- Projects Row -->
-    <div class="row">
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                The Walking Dead
-            </a>
-          
-           
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                Breaking Bad
-            </a>
-          
-         
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                test
-            </a>
-            
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"  alt="">
-                test
-            </a>
-          
-           
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                test
-            </a>
-           
-          
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="https://placezombie.com/140x200"   alt="">
-                test
-            </a>
-         
-      
-        </div>
-    </div>
-   
 
    
+    @foreach (var item in ViewBag.MyList)  // dodac server ftp z obrazkaimi itp
+    {
+        String ID = item.Id;
+        ID = ID.Remove(ID.Length - 1);
+        <div class="col-md-2 portfolio-item">
+            <a href="#">
+                <img class="img-shadowban" src="~/App_Data/TV/tt0096697/poster.jpg" alt="140/200"> 
+               @item.Name
+            </a>
+        </div>
+    }
 
 
+
+
+
+    </div>
     
 
 </div>

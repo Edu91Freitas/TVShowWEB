@@ -8,8 +8,13 @@ namespace TVShowWEB.Controllers
 {
     public class HomeController : Controller
     {
+        private TVEntity _db = new TVEntity();
+       
         public ActionResult Index()
         {
+
+            ViewBag.MyList = _db.Show.ToList();
+
             return View();
         }
 
