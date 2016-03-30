@@ -6,29 +6,36 @@
 <!-- Page Content -->
 <div class="container">
 
-<br/>
+    <br/>
     <!-- /.row -->
     <!-- Projects Row -->
     <div class="row">
 
-   
-    @foreach (var item in ViewBag.MyList)  // dodac server ftp z obrazkaimi itp
-    {
-        String ID = item.Id;
-        ID = ID.Remove(ID.Length - 1);
-        <div class="col-md-2 portfolio-item">
-            <a href="#">
-                <img class="img-shadowban" src="~/App_Data/TV/tt0096697/poster.jpg" alt="140/200"> 
-               @item.Name
-            </a>
-        </div>
-    }
+
+        @foreach (var item in ViewBag.MyList) // dodac server ftp z obrazkaimi itp
+        {
+            String ID = item.Id;
+            ID = ID.Remove(ID.Length - 1);
+            <div class="col-md-2 portfolio-item">
+                <a href="#">
+                    <img class="img-shadowban" src="~/Image/TV/@ID/poster.jpg" alt="140/200">
+                    @item.Name
+                </a>
+            </div>
+        }
 
 
 
 
 
     </div>
-    
+
 
 </div>
+<script>
+    $(document).ready(function () {
+        $(".img-shadowban").cloudinary({
+            width: 140, height: 200, crop: 'thumb', gravity: 'fill', 
+        });
+    });
+</script>
