@@ -7,11 +7,11 @@
 
 <div class="row">
     <div class="col-md-2">
-        <img class="img-shadow" src="https://placezombie.com/140x200" alt="">
+        <img class="img-shadow" src="~/Image/TV/@ViewBag.ID/poster.jpg" alt="">
     </div>
     <div class="col-md-6">
-        <a class="textTitle">Better Call Saul</a><br />
-        <a class="textCat">47min | Crime, Drama | TV Series (2015– )</a><br />
+        <a class="textTitle">@ViewBag.Name</a><br />
+        <a class="textCat">@ViewBag.Cat</a><br />
         <div class="TvShowTable">
             <table id="data">
                 <tr>
@@ -31,93 +31,32 @@
                         Watched?
                     </td>
                 </tr>
-                <tr  id="test1">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        1
-                    </td>
-                    <td>
-                        Switch
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
-                    <td>
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-                </tr>
-                <tr  id="test2">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        Cobbler
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
+@foreach (var item in ViewBag.EpisodeList)
+{
+    string idep = @item.IdEpisode;
+    string link = "~/Image/TV/"+ViewBag.ID+"/"+item.IdEpisode+".jpg";
+    string se = idep.Substring(0, idep.IndexOf('E'));
+    string ep = idep.Substring(idep.IndexOf('E'));
 
-                    <td>
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-
-                </tr>
-                <tr  id="test3">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        3
-                    </td>
-                    <td>
-                        Amalirllo
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
-                    <td>
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-                </tr>
-                <tr id="test4">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        Amalirllo
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
-                    <td>
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-                </tr>
-                <tr id="test5">
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        2
-                    </td>
-                    <td>
-                        Amalirllo
-                    </td>
-                    <td>
-                        15 Feb. 2016
-                    </td>
-                    <td>                        
-                        <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                    </td>
-                </tr>
+    <tr id="@item.IdEpisode">
+        <td>
+            @se
+        </td>
+        <td>
+            @ep
+        </td>
+        <td>
+            @item.EpisodesTitle
+        </td>
+        <td>
+            @item.EpisodesAir
+        </td>
+        <td>
+            <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+        </td>
+    </tr>
+}
+              
             </table>
         </div>
 

@@ -216,7 +216,6 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\TV\tt0096697\poster.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\grid.css" />
@@ -316,9 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Image\TV\tt0106179\" />
-    <Folder Include="Image\TV\tt2575988\" />
-    <Folder Include="Image\TV\tt3749900\" />
+    <Folder Include="Image\tv\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

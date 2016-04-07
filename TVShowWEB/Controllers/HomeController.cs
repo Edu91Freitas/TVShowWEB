@@ -14,13 +14,26 @@ namespace TVShowWEB.Controllers
         {
 
             ViewBag.MyList = _db.Show.ToList();
-
+           
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            string v = Request.QueryString["id"];
+            if (v != null)
+            {
+                ViewBag.ID = v;
+                ViewBag.Name = _db.Show.Find(v).Name;
+                ViewBag.Cat = _db.Show.Find(v).Cat;
+                ViewBag.Akt = _db.Show.Find(v).ActualSeasone;
+
+
+                ViewBag.EpisodeList =
+                    _db.Episode.SqlQuery("SELECT * from [dbo].[Episode] Where Id = '"+v+ "' ORDER BY [IdEpisode] DESC").ToList();
+
+            }
+            
 
 
             return View();

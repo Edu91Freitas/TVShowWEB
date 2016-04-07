@@ -9,20 +9,37 @@
     <br/>
     <!-- /.row -->
     <!-- Projects Row -->
-    <div class="row">
+   
 
+    @{
+        int raw = 1;
+        var start = "<div class=\"row\">";
+        var end = " </div>";
+    }
+    @foreach (var item in ViewBag.MyList)
+    {
+        String ID = item.Id;
+        ID = ID.Remove(ID.Length - 1);
 
-        @foreach (var item in ViewBag.MyList) // dodac server ftp z obrazkaimi itp
+        if (raw == 1)
         {
-            String ID = item.Id;
-            ID = ID.Remove(ID.Length - 1);
-            <div class="col-md-2 portfolio-item">
-                <a href="#">
-                    <img class="img-shadowban" src="~/Image/TV/@ID/poster.jpg" alt="140/200">
-                    @item.Name
-                </a>
-            </div>
+           @(new HtmlString("<div class=\"row\"> \n"))
+
         }
+
+        <div class="col-md-2 portfolio-item">
+            <a href="/Home/About?id=@ID">
+                <img class="img-shadowban" src="~/Image/TV/@ID/poster2.jpg" alt="140/200">
+                @item.Name
+            </a>
+        </div>
+        if (raw == 6)
+        {
+            raw = 0;
+            @(new HtmlString("</div> \n"))
+        }
+        raw++;
+    }
 
 
 
@@ -31,11 +48,7 @@
     </div>
 
 
-</div>
+
 <script>
-    $(document).ready(function () {
-        $(".img-shadowban").cloudinary({
-            width: 140, height: 200, crop: 'thumb', gravity: 'fill', 
-        });
-    });
+ 
 </script>
