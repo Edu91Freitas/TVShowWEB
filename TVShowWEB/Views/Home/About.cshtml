@@ -10,10 +10,10 @@
         <img class="img-shadow" src="~/Image/TV/@ViewBag.ID/poster.jpg" alt="">
     </div>
     <div class="col-md-6">
-        <a class="textTitle">@ViewBag.Name</a><br />
-        <a class="textCat">@ViewBag.Cat</a><br />
+        <a class="textTitle">@ViewBag.Name.ToString().TrimEnd()</a><br />
+        <a class="textCat">@ViewBag.Cat.ToString().TrimEnd()</a><br />
         <div class="TvShowTable">
-            <table id="data">
+            <table class="table table-condensed" id="data">
                 <tr>
                     <td>
                         Season
@@ -31,32 +31,32 @@
                         Watched?
                     </td>
                 </tr>
-@foreach (var item in ViewBag.EpisodeList)
-{
-    string idep = @item.IdEpisode;
-    string link = "~/Image/TV/"+ViewBag.ID+"/"+item.IdEpisode+".jpg";
-    string se = idep.Substring(0, idep.IndexOf('E'));
-    string ep = idep.Substring(idep.IndexOf('E'));
+                @foreach (var item in ViewBag.EpisodeList)
+                {
+                    string idep = @item.IdEpisode.ToString().TrimEnd();
+                    string link = "~/Image/TV/" + ViewBag.ID + "/" + item.IdEpisode + ".jpg";
+                    string se = idep.Substring(0, idep.IndexOf('E'));
+                    string ep = idep.Substring(idep.IndexOf('E'));
 
-    <tr id="@item.IdEpisode">
-        <td>
-            @se
-        </td>
-        <td>
-            @ep
-        </td>
-        <td>
-            @item.EpisodesTitle
-        </td>
-        <td>
-            @item.EpisodesAir
-        </td>
-        <td>
-            <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-        </td>
-    </tr>
-}
-              
+                    <tr id="@item.IdEpisode.ToString().TrimEnd()">
+                        <td>
+                            @se
+                        </td>
+                        <td>
+                            @ep
+                        </td>
+                        <td>
+                            @item.EpisodesTitle
+                        </td>
+                        <td>
+                            @item.EpisodesAir
+                        </td>
+                        <td>
+                            <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+                        </td>
+                    </tr>
+                }
+
             </table>
         </div>
 
@@ -64,13 +64,13 @@
 
     <div id="despanel" class="col-md-4 info hidden">
         <br />
-        <a id="title" class="textTitleDes">Better Call Saul</a>
-        <br/>
+        <a id="title" class="textTitleDes">-Loading ...-</a>
+        <br />
         <br />
         <img id="pic" class="iamge-des" src="https://placezombie.com/200x112" alt="eye">
-        <br/>
-        <br/>
-        <p id="des">After Bridgit Pike is kidnapped her brothers, a new spark of courage ignites within her, as she chooses to take control of her future. Meanwhile, Kringle and Nygma's relationship will take a new step and Penguin and Galavan continue to battle for control of Gotham City's underworld.</p>
+        <br />
+        <br />
+        <p id="des">-Loading ...-</p>
 
 
         <div class="lista">
@@ -84,12 +84,11 @@
                 </select>
             </fieldset>
         </div>
-</div>
+    </div>
 </div>
 <br />
 <script>
-
-
+   
 
     $(function () {
         $("#speed").selectmenu();
@@ -103,38 +102,36 @@
         id = $(this).attr('id');
 
 
-        switch(id) {
-        case "test1":
-            $('#title').text('Switch');
-            $('#des').text('Jimmy and Kims relationship takes a new turn. Mike decides its for the best to sever his affiliation with an unrestrained associate.');
-            $("#despanel").removeClass('hidden');
-            $('#pic').attr("src", 'http://ia.media-imdb.com/images/M/MV5BNDgyODIyODIxOV5BMl5BanBnXkFtZTgwODQxNjM5NzE@@._V1_UX200_CR0,0,200,112_AL_.jpg');
-            break;
-        case "test2":
-            $('#title').text('Cobbler');
-            $('#des').text('Mike brokers a deal in order to keep a potentially messy situation intact; Jimmy tries to exonerate an eccentric client.');
-            $("#despanel").removeClass('hidden');
-            $('#pic').attr("src", "http://ia.media-imdb.com/images/M/MV5BMTk3OTcyMzg4NF5BMl5BanBnXkFtZTgwNjE1MDExODE@@._V1_UX200_CR0,0,200,112_AL_.jpg");
-            break;
-            case "test3":
-                $('#title').text('Ep 3');
-                $('#des').text('33333333333333333333');
-                $("#despanel").removeClass('hidden');
-                $('#pic').attr("src", 'https://placezombie.com/200x112');
-                break;
-            case "test4":
-                $('#title').text('Ep 4');
-                $('#des').text('444444444444444444444');
-                $("#despanel").removeClass('hidden');
-                $('#pic').attr("src", 'https://placezombie.com/200x112');
-                break;
-            case "test5":
-                $('#title').text('Ep 5');
-                $('#des').text('555555555555555555555');
-                $("#despanel").removeClass('hidden');
-                $('#pic').attr("src", 'https://placezombie.com/200x112');
-                break;
-        default:
+        switch (id) {
+
+            @{
+
+                foreach (var item in ViewBag.EpisodeList)
+                {
+                    string a1 = "case \""+item.IdEpisode.ToString().TrimEnd()+"\":";
+                    string a2 = " $('#title').text('" + item.EpisodesTitle.ToString().TrimEnd().Replace("'", "\"") + "');";
+                    string a3 = "$('#des').text('"+item.EpisodesDescriptions.ToString().TrimEnd().Replace("'", "\"") + "');";
+                    string a4 = " $('#despanel').removeClass('hidden');";
+                    string a5 = "  $('#pic').attr('src', '/Image/TV/"+ViewBag.ID+"/"+item.IdEpisode.ToString().TrimEnd() + ".jpg');";
+                    string a6 = " break;";
+                    string next = "\n";
+                   @Html.Raw( @a1)
+                    @next
+                    @Html.Raw(@a2)
+                     @next
+                    @Html.Raw(@a3)
+                     @next
+                    @Html.Raw(@a4)
+                     @next
+                    @Html.Raw(@a5)
+                     @next
+                   @Html.Raw(@a6)
+                     @next
+                }
+            }
+
+
+
 
         }
 
@@ -154,6 +151,8 @@
 
     });
 
+
+ 
 
 
 </script>
