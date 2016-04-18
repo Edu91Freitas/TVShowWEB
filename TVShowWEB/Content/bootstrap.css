@@ -6882,7 +6882,7 @@ td.visible-print {
 /*Tabela ---------------*/
 .TvShowTable {
     overflow-y:auto;
-    height:75vh;
+    height:65vh;
 	margin:0px;
     padding:0px;
 	width:100%;
@@ -7067,14 +7067,36 @@ select {
     color: whitesmoke !important;
  
 }
-.lista {
-     font-size: 10px !important;
-    display: table-cell !important;
-    vertical-align: middle !important;
-    height: 50px !important;
- 
-}
+
 table {
     table-layout:fixed;
 }
 /*scrollbar*/
+.scrollbar{
+overflow: auto;
+
+overflow-y:auto;
+float:left;
+}
+
+/*example4 scrollbar*/
+
+#ex4::-webkit-scrollbar{
+width:8px;
+background-color:#cccccc;
+}
+#ex4::-webkit-scrollbar-thumb{
+background-color:#333333;
+}
+#ex4::-webkit-scrollbar-thumb:hover{
+background-color:#999999;
+border:1px solid #333333;
+}
+#ex4::-webkit-scrollbar-thumb:active{
+background-color:#666666;
+border:1px solid #333333;
+}
+#ex4::-webkit-scrollbar-track{
+border:1px gray solid;
+-webkit-box-shadow:0 0 2px gray inset;
+}

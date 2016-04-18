@@ -30,10 +30,22 @@ namespace TVShowWEB.Controllers
 
 
                 ViewBag.EpisodeList =
-                    _db.Episode.SqlQuery("SELECT * from [dbo].[Episode] Where Id = '"+v+ "' ORDER BY [IdEpisode] DESC").ToList();
+                    _db.Episode.SqlQuery("SELECT * from [dbo].[Episode] Where Id = '" + v +
+                                         "' ORDER BY [IdEpisode] DESC").ToList();
 
+                ViewBag.TorrentList =
+                    _db.Torrent.SqlQuery("SELECT * From [dbo].[Torrent] Where [IdShow] = '" + v +"'").ToList();
+
+
+                //ViewBag.TorrentList =
+                //    _db.Torrent.SqlQuery("SELECT * From [dbo].[Torrent] Where [IdShow] = '" + v +
+                //                         "' order by CAST(SUBSTRING(Seed + '0', PATINDEX('%[0-9]%', Seed + '0'), LEN(Seed + '0')) AS INT) DESC").ToList();
             }
-            
+            else
+            {
+                return Content("Invalid Show ID :/");
+            }
+
 
 
             return View();

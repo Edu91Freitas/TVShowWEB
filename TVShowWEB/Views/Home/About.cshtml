@@ -12,7 +12,7 @@
     <div class="col-md-6">
         <a class="textTitle">@ViewBag.Name.ToString().TrimEnd()</a><br />
         <a class="textCat">@ViewBag.Cat.ToString().TrimEnd()</a><br />
-        <div class="TvShowTable">
+        <div class="TvShowTable scrollbar" id="ex4">
             <table class="table table-condensed" id="data">
                 <tr>
                     <td>
@@ -31,35 +31,36 @@
                         Watched?
                     </td>
                 </tr>
-                @foreach (var item in ViewBag.EpisodeList)
-                {
-                    string idep = @item.IdEpisode.ToString().TrimEnd();
-                    string link = "~/Image/TV/" + ViewBag.ID + "/" + item.IdEpisode + ".jpg";
-                    string se = idep.Substring(0, idep.IndexOf('E'));
-                    string ep = idep.Substring(idep.IndexOf('E'));
+                @{
+                    foreach (var item in ViewBag.EpisodeList)
+                    {
+                        string idep = @item.IdEpisode.ToString().TrimEnd();
+                        string link = "~/Image/TV/" + ViewBag.ID + "/" + item.IdEpisode + ".jpg";
+                        string se = idep.Substring(0, idep.IndexOf('E'));
+                        string ep = idep.Substring(idep.IndexOf('E'));
 
-                    <tr id="@item.IdEpisode.ToString().TrimEnd()">
-                        <td>
-                            @se
-                        </td>
-                        <td>
-                            @ep
-                        </td>
-                        <td>
-                            @item.EpisodesTitle
-                        </td>
-                        <td>
-                            @item.EpisodesAir
-                        </td>
-                        <td>
-                            <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
-                        </td>
-                    </tr>
+                        <tr id="@item.IdEpisode.ToString().TrimEnd()">
+                            <td>
+                                @se
+                            </td>
+                            <td>
+                                @ep
+                            </td>
+                            <td>
+                                @item.EpisodesTitle
+                            </td>
+                            <td>
+                                @item.EpisodesAir
+                            </td>
+                            <td>
+                                <img class="image-eye" src="http://i.imgur.com/TpIciYA.png" alt="eye">
+                            </td>
+                        </tr>
+                    }
                 }
-
             </table>
         </div>
-
+              
     </div>
 
     <div id="despanel" class="col-md-4 info hidden">
@@ -67,28 +68,34 @@
         <a id="title" class="textTitleDes">-Loading ...-</a>
         <br />
         <br />
-        <img id="pic" class="iamge-des" src="https://placezombie.com/200x112" alt="eye">
+        <img id="pic" class="iamge-des" src="https://placehold.it/200x112" alt="eye">
         <br />
         <br />
         <p id="des">-Loading ...-</p>
 
 
-        <div class="lista">
-            <fieldset class="listdown">
-                <label class="listlabel" for="speed">Video quality</label>
-                <select name="speed" id="speed">
-                    <option>480p</option>
-                    <option>720p</option>
-                    <option selected="selected">1080p</option>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Magnet link 
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                @*Dodac dane torrentow do drop downa tak jak opis odcinka itp \/*@
+@{
 
-                </select>
-            </fieldset>
+    foreach (var item in ViewBag.TorrentList )
+    {
+        <li id="@item.IdEpisode.ToString().TrimEnd()" class ="hide"><a href="#">@item.Nazwa.ToString().TrimEnd() <span>@item.Rozmiar.ToString().TrimEnd() </span> <span>@item.Format.ToString().TrimEnd()</span><span>@item.Seed.ToString().TrimEnd()</span><span>@item.Peer.ToString().TrimEnd()</span></a></li> 
+    }
+
+}
+    </ul>
         </div>
     </div>
 </div>
-<br />
+
 <script>
-   
+
 
     $(function () {
         $("#speed").selectmenu();
@@ -97,6 +104,8 @@
 
 
     $('#data tr').click(function (e) {
+
+
         $('#data tr').removeClass('highlighted');
         $(this).addClass('highlighted');
         id = $(this).attr('id');
@@ -115,22 +124,20 @@
                     string a5 = "  $('#pic').attr('src', '/Image/TV/"+ViewBag.ID+"/"+item.IdEpisode.ToString().TrimEnd() + ".jpg');";
                     string a6 = " break;";
                     string next = "\n";
-                   @Html.Raw( @a1)
+                    @Html.Raw( @a1)
                     @next
                     @Html.Raw(@a2)
-                     @next
+                    @next
                     @Html.Raw(@a3)
-                     @next
+                    @next
                     @Html.Raw(@a4)
-                     @next
+                    @next
                     @Html.Raw(@a5)
-                     @next
-                   @Html.Raw(@a6)
-                     @next
+                    @next
+                    @Html.Raw(@a6)
+                    @next
                 }
             }
-
-
 
 
         }
@@ -139,9 +146,7 @@
     });
 
 
-
-
-    $('.TvShowTable').on("click", "a,img", function (e) {
+    $('.TvShowTable').on("click", "a,img", function(e) {
 
         if ($(this).hasClass("image-eye")) {
             $(this).removeClass("image-eye").addClass("image-eye-clicked");
@@ -150,9 +155,29 @@
         }
 
     });
+   
+    
+    $('#data tr').click(function (e) {
 
+        //pobra id z li
+        var id1 = $(this).closest('tr').attr('id');
 
- 
+     
+       
+        alert("--" + "--" + id1 + "--" );
+      
+        $("li").each(function (index) {
+           
+            if ($(this).attr("id") == id1) {
+                $(this).removeClass("hide");
+            } else {
+                $(this).addClass("hide");
+            }
+           
+        });
+       
+        });
+   
 
 
 </script>
