@@ -85,8 +85,10 @@
 
     foreach (var item in ViewBag.TorrentList )
     {
+       
         <li id="@item.IdEpisode.ToString().TrimEnd()" class ="hide"><a href="#">@item.Nazwa.ToString().TrimEnd() <span>@item.Rozmiar.ToString().TrimEnd() </span> <span>@item.Format.ToString().TrimEnd()</span><span>@item.Seed.ToString().TrimEnd()</span><span>@item.Peer.ToString().TrimEnd()</span></a></li> 
     }
+
 
 }
     </ul>
