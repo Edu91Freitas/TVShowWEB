@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TV.dbo.Episode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Episode">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdEpisode" />
+          </Key>
+          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EpisodesTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="EpisodesDescriptions" Type="nvarchar" MaxLength="1000" />
+          <Property Name="EpisodesAir" Type="nvarchar" MaxLength="400" />
+          <Property Name="EpisodesCover" Type="nvarchar" MaxLength="400" />
+          <Property Name="IdEpisode" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Show">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="800" />
+          <Property Name="Rate" Type="nvarchar" MaxLength="100" />
+          <Property Name="Votes" Type="nvarchar" MaxLength="100" />
+          <Property Name="Poster" Type="nvarchar" MaxLength="500" />
+          <Property Name="Cat" Type="nvarchar" MaxLength="300" />
+          <Property Name="ActualSeasone" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TV.dbo.Torrent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Torrent">
+          <Key>
+            <PropertyRef Name="IdShow" />
+            <PropertyRef Name="IdEpisode" />
+          </Key>
+          <Property Name="IdShow" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdEpisode" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="Rozmiar" Type="nchar" MaxLength="100" />
+          <Property Name="Format" Type="nchar" MaxLength="100" />
+          <Property Name="Seed" Type="nvarchar" MaxLength="15" />
+          <Property Name="Peer" Type="nvarchar" MaxLength="15" />
+          <Property Name="Magnet" Type="nchar" MaxLength="800" />
+          <Property Name="Nazwa" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ShowID" />
+            <PropertyRef Name="EpisodeID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ShowID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EpisodeID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Watched" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="TVModelStoreContainer">
+          <EntitySet Name="Show" EntityType="Self.Show" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Episode" EntityType="Self.Episode" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Episode].[Id] AS [Id], 
+    [Episode].[EpisodesTitle] AS [EpisodesTitle], 
+    [Episode].[EpisodesDescriptions] AS [EpisodesDescriptions], 
+    [Episode].[EpisodesAir] AS [EpisodesAir], 
+    [Episode].[EpisodesCover] AS [EpisodesCover], 
+    [Episode].[IdEpisode] AS [IdEpisode]
+    FROM [dbo].[Episode] AS [Episode]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Torrent" EntityType="Self.Torrent" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Torrent].[IdShow] AS [IdShow], 
+    [Torrent].[IdEpisode] AS [IdEpisode], 
+    [Torrent].[Rozmiar] AS [Rozmiar], 
+    [Torrent].[Format] AS [Format], 
+    [Torrent].[Seed] AS [Seed], 
+    [Torrent].[Peer] AS [Peer], 
+    [Torrent].[Magnet] AS [Magnet], 
+    [Torrent].[Nazwa] AS [Nazwa]
+    FROM [dbo].[Torrent] AS [Torrent]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User].[UserID] AS [UserID], 
+    [User].[ShowID] AS [ShowID], 
+    [User].[EpisodeID] AS [EpisodeID], 
+    [User].[Watched] AS [Watched]
+    FROM [dbo].[User] AS [User]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Show">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Votes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Poster" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Cat" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ActualSeasone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Episode">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IdEpisode" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EpisodesTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EpisodesDescriptions" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="EpisodesAir" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="EpisodesCover" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="IdEpisode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Torrent">
+          <Key>
+            <PropertyRef Name="IdShow" />
+            <PropertyRef Name="IdEpisode" />
+          </Key>
+          <Property Name="IdShow" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IdEpisode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Rozmiar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Format" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Seed" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Peer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Magnet" Type="String" MaxLength="800" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ShowID" />
+            <PropertyRef Name="EpisodeID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ShowID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EpisodeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Watched" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TVEntities_" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Show" EntityType="Self.Show" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Episode" EntityType="Self.Episode" />
+          <EntitySet Name="Torrent" EntityType="Self.Torrent" />
+          <EntitySet Name="User" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TVModelStoreContainer" CdmEntityContainer="TVEntities_">
+          <EntitySetMapping Name="Show">
+            <EntityTypeMapping TypeName="TVModel.Show">
+              <MappingFragment StoreEntitySet="Show">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="Poster" ColumnName="Poster" />
+                <ScalarProperty Name="Cat" ColumnName="Cat" />
+                <ScalarProperty Name="ActualSeasone" ColumnName="ActualSeasone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TVModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Episode">
+            <EntityTypeMapping TypeName="TVModel.Episode">
+              <MappingFragment StoreEntitySet="Episode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EpisodesTitle" ColumnName="EpisodesTitle" />
+                <ScalarProperty Name="EpisodesDescriptions" ColumnName="EpisodesDescriptions" />
+                <ScalarProperty Name="EpisodesAir" ColumnName="EpisodesAir" />
+                <ScalarProperty Name="EpisodesCover" ColumnName="EpisodesCover" />
+                <ScalarProperty Name="IdEpisode" ColumnName="IdEpisode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Torrent">
+            <EntityTypeMapping TypeName="TVModel.Torrent">
+              <MappingFragment StoreEntitySet="Torrent">
+                <ScalarProperty Name="IdShow" ColumnName="IdShow" />
+                <ScalarProperty Name="IdEpisode" ColumnName="IdEpisode" />
+                <ScalarProperty Name="Rozmiar" ColumnName="Rozmiar" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="Seed" ColumnName="Seed" />
+                <ScalarProperty Name="Peer" ColumnName="Peer" />
+                <ScalarProperty Name="Magnet" ColumnName="Magnet" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="TVModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ShowID" ColumnName="ShowID" />
+                <ScalarProperty Name="EpisodeID" ColumnName="EpisodeID" />
+                <ScalarProperty Name="Watched" ColumnName="Watched" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

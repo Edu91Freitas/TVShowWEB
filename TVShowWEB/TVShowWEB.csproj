@@ -200,20 +200,44 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Episode.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Episode.cs">
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Show.cs">
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Torrent.cs">
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TVEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TVEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TVEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TVEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TVEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>TVEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Show.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs" />
-    <Compile Include="Torrent.cs" />
-    <Compile Include="TVEntity.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -256,6 +280,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\TVEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TVEntity.edmx</DependentUpon>
+      <LastGenOutput>TVEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TVEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TVEntity.edmx</DependentUpon>
+      <LastGenOutput>TVEntity.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -267,6 +301,13 @@
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\jquery-2.2.1.min.map" />
+    <EntityDeploy Include="Models\TVEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TVEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TVEntity.edmx.diagram">
+      <DependentUpon>TVEntity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />

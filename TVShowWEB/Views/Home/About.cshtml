@@ -86,7 +86,7 @@
     foreach (var item in ViewBag.TorrentList )
     {
        
-        <li id="@item.IdEpisode.ToString().TrimEnd()" class ="hide"><a href="#">@item.Nazwa.ToString().TrimEnd() <span>@item.Rozmiar.ToString().TrimEnd() </span> <span>@item.Format.ToString().TrimEnd()</span><span>@item.Seed.ToString().TrimEnd()</span><span>@item.Peer.ToString().TrimEnd()</span></a></li> 
+        <li id="@item.IdEpisode.ToString().TrimEnd()" class =""><a href="#">@item.Nazwa.ToString().TrimEnd() <span>@item.Rozmiar.ToString().TrimEnd() </span> <span>@item.Format.ToString().TrimEnd()</span><span>@item.Seed.ToString().TrimEnd()</span><span>@item.Peer.ToString().TrimEnd()</span></a></li> 
     }
 
 
@@ -159,26 +159,26 @@
     });
    
     
-    $('#data tr').click(function (e) {
+    //$('#data tr').click(function (e) {
 
-        //pobra id z li
-        var id1 = $(this).closest('tr').attr('id');
+    //    //pobra id z li
+    //    var id1 = $(this).closest('tr').attr('id');
 
      
        
-        alert("--" + "--" + id1 + "--" );
+    //    alert("--" + "--" + id1 + "--" );
       
-        $("li").each(function (index) {
+    //    $("li").each(function (index) {
            
-            if ($(this).attr("id") == id1) {
-                $(this).removeClass("hide");
-            } else {
-                $(this).addClass("hide");
-            }
+    //        if ($(this).attr("id") == id1) {
+    //            $(this).removeClass("hide");
+    //        } else {
+    //            $(this).addClass("hide");
+    //        }
            
-        });
+    //    });
        
-        });
+    //    });
    
 
 

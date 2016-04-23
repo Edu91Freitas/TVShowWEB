@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TVShowWEB.Models;
 
 namespace TVShowWEB.Controllers
 {
     public class HomeController : Controller
     {
-        private TVEntity _db = new TVEntity();
+        private TVEntities_ _db = new TVEntities_();
+        
        
         public ActionResult Index()
         {
@@ -34,7 +36,7 @@ namespace TVShowWEB.Controllers
                                          "' ORDER BY [IdEpisode] DESC").ToList();
 
                 ViewBag.TorrentList =
-                    _db.Torrent.SqlQuery("SELECT * From [dbo].[Torrent] Where [IdShow] = '" + v +"'").ToList();
+                    _db.Torrent.SqlQuery("SELECT TOP(5) * From [dbo].[Torrent] Where [IdShow] = '" + v +"'").ToList();
 
 
                 //ViewBag.TorrentList =
