@@ -13,10 +13,10 @@ namespace TVShowWEB.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TVEntities_ : DbContext
+    public partial class TVEnt : DbContext
     {
-        public TVEntities_()
-            : base("name=TVEntities_")
+        public TVEnt()
+            : base("name=TVEnt")
         {
         }
     
@@ -27,8 +27,8 @@ namespace TVShowWEB.Models
     
         public virtual DbSet<Show> Show { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Episode> Episode { get; set; }
         public virtual DbSet<Torrent> Torrent { get; set; }
+        public virtual DbSet<Episode> Episode { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace TVShowWEB.Controllers
 {
     public class HomeController : Controller
     {
-        private TVEntities_ _db = new TVEntities_();
+        private TVEnt _db = new TVEnt();
         
        
         public ActionResult Index()
@@ -36,8 +36,12 @@ namespace TVShowWEB.Controllers
                                          "' ORDER BY [IdEpisode] DESC").ToList();
 
                 ViewBag.TorrentList =
-                    _db.Torrent.SqlQuery("SELECT TOP(5) * From [dbo].[Torrent] Where [IdShow] = '" + v +"'").ToList();
+                    _db.Torrent.SqlQuery("SELECT * From [dbo].[Torrent] Where [IdShow] = '" + v + "'").ToList();
 
+                //List<TVShowWEB.Models.Torrent> list =
+                //    _db.Torrent.Where(p => p.IdShow == v).ToList();
+
+                //ViewBag.TEST = list;
 
                 //ViewBag.TorrentList =
                 //    _db.Torrent.SqlQuery("SELECT * From [dbo].[Torrent] Where [IdShow] = '" + v +

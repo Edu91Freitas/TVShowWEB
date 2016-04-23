@@ -14,6 +14,7 @@ namespace TVShowWEB.Models
     
     public partial class Torrent
     {
+        public long IdTorrent { get; set; }
         public string IdShow { get; set; }
         public string IdEpisode { get; set; }
         public string Rozmiar { get; set; }

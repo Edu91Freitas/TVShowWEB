@@ -75,18 +75,21 @@
 
 
         <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                Magnet link 
-                <span class="caret"></span>
+            <button id="torbutton" class="btn btn-primary dropdown-toggle buttontor" type="button" data-toggle="dropdown">
+                Select ...
+                <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
             </button>
-            <ul class="dropdown-menu">
+            <a id="magnethref" href="">
+                <img id="magnetid" src="~/Image/Magnet.png" class="img-responsive magnet hide" alt="magnet">
+            </a>
+            <ul id="torlist" class="dropdown-menu scrollable-menu dropdown-menu-right " role="menu">
                 @*Dodac dane torrentow do drop downa tak jak opis odcinka itp \/*@
 @{
 
-    foreach (var item in ViewBag.TorrentList )
+    foreach (var item in ViewBag.TorrentList)
     {
-       
-        <li id="@item.IdEpisode.ToString().TrimEnd()" class =""><a href="#">@item.Nazwa.ToString().TrimEnd() <span>@item.Rozmiar.ToString().TrimEnd() </span> <span>@item.Format.ToString().TrimEnd()</span><span>@item.Seed.ToString().TrimEnd()</span><span>@item.Peer.ToString().TrimEnd()</span></a></li> 
+
+        <li id="@item.IdEpisode.ToString().TrimEnd()" class ="hide"><a id="name" href="#">@item.Nazwa.ToString().TrimEnd() <b><span>@item.Rozmiar.ToString().TrimEnd() </span> <span> @item.Format.ToString().TrimEnd()</span></b><span style="color:green"> S: @item.Seed.ToString().TrimEnd()</span><span style="color:red"  > P: @item.Peer.ToString().TrimEnd()</span></a> <span id="magnetlink" class="hide">@item.Magnet</span></li> 
     }
 
 
@@ -159,27 +162,29 @@
     });
    
     
-    //$('#data tr').click(function (e) {
+    $('#data tr').click(function (e) {
 
-    //    //pobra id z li
-    //    var id1 = $(this).closest('tr').attr('id');
+        //pobra id z li
+        var id1 = $(this).closest('tr').attr('id');
 
-     
-       
-    //    alert("--" + "--" + id1 + "--" );
-      
-    //    $("li").each(function (index) {
+
+        $(".dropdown li").each(function (index) {
            
-    //        if ($(this).attr("id") == id1) {
-    //            $(this).removeClass("hide");
-    //        } else {
-    //            $(this).addClass("hide");
-    //        }
+            if ($(this).attr("id") == id1) {
+                $(this).removeClass("hide");
+            } else {
+                $(this).addClass("hide");
+            }
            
-    //    });
+        });
        
-    //    });
+        });
    
-
+    $('#torlist li').on('click', function () {
+        $("#torbutton").text($(this).find("#name").text());
+        var mag = $(this).find("#magnetlink").text();
+        $("#magnetid").removeClass("hide");
+        $("#magnethref").attr("href", mag);
+    });
 
 </script>

@@ -42,13 +42,11 @@ warning 6002: The table/view 'TV.dbo.Episode' does not have a primary key define
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'TV.dbo.Torrent' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Torrent">
           <Key>
-            <PropertyRef Name="IdShow" />
-            <PropertyRef Name="IdEpisode" />
+            <PropertyRef Name="IdTorrent" />
           </Key>
+          <Property Name="IdTorrent" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdShow" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="IdEpisode" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="Rozmiar" Type="nchar" MaxLength="100" />
@@ -74,6 +72,7 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
         <EntityContainer Name="TVModelStoreContainer">
           <EntitySet Name="Show" EntityType="Self.Show" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Torrent" EntityType="Self.Torrent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Episode" EntityType="Self.Episode" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Episode].[Id] AS [Id], 
@@ -83,18 +82,6 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
     [Episode].[EpisodesCover] AS [EpisodesCover], 
     [Episode].[IdEpisode] AS [IdEpisode]
     FROM [dbo].[Episode] AS [Episode]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Torrent" EntityType="Self.Torrent" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Torrent].[IdShow] AS [IdShow], 
-    [Torrent].[IdEpisode] AS [IdEpisode], 
-    [Torrent].[Rozmiar] AS [Rozmiar], 
-    [Torrent].[Format] AS [Format], 
-    [Torrent].[Seed] AS [Seed], 
-    [Torrent].[Peer] AS [Peer], 
-    [Torrent].[Magnet] AS [Magnet], 
-    [Torrent].[Nazwa] AS [Nazwa]
-    FROM [dbo].[Torrent] AS [Torrent]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="User" EntityType="Self.User" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -133,6 +120,20 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Torrent">
+          <Key>
+            <PropertyRef Name="IdTorrent" />
+          </Key>
+          <Property Name="IdTorrent" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShow" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="IdEpisode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Rozmiar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Format" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Seed" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Peer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Magnet" Type="String" MaxLength="800" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
         <EntityType Name="Episode">
           <Key>
             <PropertyRef Name="Id" />
@@ -145,20 +146,6 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
           <Property Name="EpisodesCover" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="IdEpisode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="Torrent">
-          <Key>
-            <PropertyRef Name="IdShow" />
-            <PropertyRef Name="IdEpisode" />
-          </Key>
-          <Property Name="IdShow" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="IdEpisode" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Rozmiar" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="Format" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="Seed" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Peer" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Magnet" Type="String" MaxLength="800" FixedLength="true" Unicode="true" />
-          <Property Name="Nazwa" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UserID" />
@@ -170,11 +157,11 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
           <Property Name="EpisodeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Watched" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="TVEntities_" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TVEnt" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Show" EntityType="Self.Show" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Episode" EntityType="Self.Episode" />
           <EntitySet Name="Torrent" EntityType="Self.Torrent" />
+          <EntitySet Name="Episode" EntityType="Self.Episode" />
           <EntitySet Name="User" EntityType="Self.User" />
         </EntityContainer>
       </Schema>
@@ -182,7 +169,7 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TVModelStoreContainer" CdmEntityContainer="TVEntities_">
+        <EntityContainerMapping StorageEntityContainer="TVModelStoreContainer" CdmEntityContainer="TVEnt">
           <EntitySetMapping Name="Show">
             <EntityTypeMapping TypeName="TVModel.Show">
               <MappingFragment StoreEntitySet="Show">
@@ -208,6 +195,21 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Torrent">
+            <EntityTypeMapping TypeName="TVModel.Torrent">
+              <MappingFragment StoreEntitySet="Torrent">
+                <ScalarProperty Name="IdTorrent" ColumnName="IdTorrent" />
+                <ScalarProperty Name="IdShow" ColumnName="IdShow" />
+                <ScalarProperty Name="IdEpisode" ColumnName="IdEpisode" />
+                <ScalarProperty Name="Rozmiar" ColumnName="Rozmiar" />
+                <ScalarProperty Name="Format" ColumnName="Format" />
+                <ScalarProperty Name="Seed" ColumnName="Seed" />
+                <ScalarProperty Name="Peer" ColumnName="Peer" />
+                <ScalarProperty Name="Magnet" ColumnName="Magnet" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Episode">
             <EntityTypeMapping TypeName="TVModel.Episode">
               <MappingFragment StoreEntitySet="Episode">
@@ -217,20 +219,6 @@ warning 6002: The table/view 'TV.dbo.User' does not have a primary key defined. 
                 <ScalarProperty Name="EpisodesAir" ColumnName="EpisodesAir" />
                 <ScalarProperty Name="EpisodesCover" ColumnName="EpisodesCover" />
                 <ScalarProperty Name="IdEpisode" ColumnName="IdEpisode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Torrent">
-            <EntityTypeMapping TypeName="TVModel.Torrent">
-              <MappingFragment StoreEntitySet="Torrent">
-                <ScalarProperty Name="IdShow" ColumnName="IdShow" />
-                <ScalarProperty Name="IdEpisode" ColumnName="IdEpisode" />
-                <ScalarProperty Name="Rozmiar" ColumnName="Rozmiar" />
-                <ScalarProperty Name="Format" ColumnName="Format" />
-                <ScalarProperty Name="Seed" ColumnName="Seed" />
-                <ScalarProperty Name="Peer" ColumnName="Peer" />
-                <ScalarProperty Name="Magnet" ColumnName="Magnet" />
-                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

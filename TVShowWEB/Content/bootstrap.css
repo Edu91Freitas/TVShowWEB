@@ -7078,7 +7078,18 @@ overflow: auto;
 overflow-y:auto;
 float:left;
 }
-
+/*dropdown torrent menu */  
+.scrollable-menu {
+    height: auto;
+    width: auto;
+    max-height: 195px;
+    max-width: 625px;
+    overflow-x: hidden;
+    overflow: auto;
+}
+.dropdown-menu {
+   left: -250px;
+}
 /*example4 scrollbar*/
 
 #ex4::-webkit-scrollbar{
@@ -7099,4 +7110,20 @@ border:1px solid #333333;
 #ex4::-webkit-scrollbar-track{
 border:1px gray solid;
 -webkit-box-shadow:0 0 2px gray inset;
+}
+
+
+.buttontor {
+        max-width: 280px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+}
+.magnet {
+    
+    height: 30px;
+    width: 30px;
+     margin: 0;
+    vertical-align: middle;
 }
